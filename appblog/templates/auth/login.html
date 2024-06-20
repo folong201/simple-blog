@@ -12,7 +12,7 @@
     <div class="container">
 
         <h1>LOGIN</h1>  <br> <br>
-        <form action="{% url login % }" method="post">
+        <!-- <form action="{% url 'login' % }" method="post">
 
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
@@ -28,14 +28,29 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
 
-            <div class="container">
-                <span>
-                    You don't have an acount
-
-                </span>
-                <a href="{%  url 'register' %}">Register</a>
-            </div>
+        </form> -->
+        
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <form method="POST" action="{% url 'login' % }">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        <div class="container">
+            <span>
+                You don't have an acount
+
+            </span>
+            <a href="{%  url 'register' %}">Register</a>
+        </div>
+        
     </div>
 
 
