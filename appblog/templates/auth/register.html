@@ -42,7 +42,7 @@
                 <a href="{%  url 'login' %}"> Login </a>
             </div>
         </form> -->
-        <form method="POST">
+        <form method="POST" action="{% url 'register' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Register</button>

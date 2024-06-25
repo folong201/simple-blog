@@ -38,7 +38,7 @@
         </ul>
         {% endif %}
         
-        <form method="POST" action="{% url 'login' % }">
+        <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Login</button>
