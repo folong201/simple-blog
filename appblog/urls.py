@@ -14,7 +14,8 @@ urlpatterns = [
    path('allarticle',views.allarticle,name="allarticle"),
    path('articledetail',views.articledetail,name="articledetail"),
    path('createarticle',views.createarticle,name="createarticle"),
-   path('updatearticle',views.updatearticle,name="updatearticle"),
+   path('updatearticle/<int:id>/',views.updatearticle,name="updatearticle"),
+   path('deletearticle/<int:id>/',views.deletearticle,name="deletearticle"),
    path('createcomment',views.createcomment,name="createcomment"),
    path('auth/logout',auth.logoutuser,name="logout"),
 ]

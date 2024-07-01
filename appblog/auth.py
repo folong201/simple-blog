@@ -33,6 +33,9 @@ def loginview(request):
     return render(request, 'auth/login.html', {'form': form})
 
 
+    
+
+
 def logoutuser(request):
     # verifier si l'utilisateur est connecté
     if not request.user.is_authenticated:

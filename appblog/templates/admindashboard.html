@@ -133,7 +133,7 @@
                   type="button"
                   class="btn btn-primary"
                   data-bs-toggle="modal"
-                  data-bs-target="#exampleModal2"
+                  data-bs-target="#exampleModal{{ article.id }}"
                   data-bs-whatever="@mdo"
                 >
                   Update
@@ -141,7 +141,7 @@
 
                 <div
                   class="modal fade"
-                  id="exampleModal2"
+                  id="exampleModal{{ article.id }}"
                   tabindex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
@@ -159,8 +159,9 @@
                           aria-label="Close"
                         ></button>
                       </div>
-                      <div class="modal-body">
-                        <form>
+                      <form method="post" action="{% url 'updatearticle' article.id %}">
+                        {% csrf_token %}
+                        <div class="modal-body">
                           <div class="mb-3">
                             <label for="recipient-name" class="col-form-label"
                               >Title:</label
@@ -181,27 +182,28 @@
                               class="form-control"
                               id="message-text"
                               name="content"
-                              
-                            >{{ article.content }}</textarea>
+                            >
+{{ article.content }}</textarea
+                            >
                           </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                          Send message
-                        </button>
-                      </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button type="submit" class="btn btn-primary">
+                            Update
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
-                <div class="btn btn-danger">delete</div>
+                <a href="{% url 'deletearticle' article.id %}" class="btn btn-danger">delete</a>
               </td>
             </tr>
             {% endfor %}

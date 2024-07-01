@@ -7,7 +7,13 @@ def index(request):
     
     return render (request,"index.html",{'articles':articles})
 
-def updatearticle(request):
+def updatearticle(request,id):
+    if request.method== "POST":
+        article = Article.objects.get(id=id)
+        article.title = request.POST.get("title")
+        article.content = request.POST.get("content")
+        article.save()
+        return redirect("admindashboard")
     return render (request,"updatearticle.html")
 
 def createarticle(request):
@@ -28,6 +34,9 @@ def createarticle(request):
 def articledetail(request):
     return render (request,"articledetail.html")
 
+def deletearticle(request,id):
+    Article.objects.get(id=id).delete()
+    return redirect("admindashboard")
 
 def allarticle(request):
     return render (request,"allarticle.html")
